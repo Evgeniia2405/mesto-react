@@ -1,0 +1,10 @@
+.profile__menu {
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  color: #FFFFFF;
+  line-height: 32.68px;
+  font-size: 27px;
+  font-weight: 500;
+}

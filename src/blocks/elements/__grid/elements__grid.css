@@ -1,0 +1,15 @@
+.elements__grid {
+  width: 100%;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 282px);
+  grid-auto-rows: 361px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  gap: 20px 17px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0;
+}
+

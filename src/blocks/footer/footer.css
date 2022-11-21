@@ -1,0 +1,20 @@
+.footer {
+  width: 88.125%;
+  margin: 0 auto calc(10% + 4px) auto;
+  display: flex;
+}
+
+@media screen and (min-width: 566px) {
+  .footer {
+    margin: 5px auto 60px auto;
+  }
+}
+
+@media screen and (min-width: 776px) {
+  .footer {
+    max-width: 880px;
+  }
+}
+
+
+

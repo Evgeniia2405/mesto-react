@@ -1,0 +1,11 @@
+.popup__container_type_form {
+  width: 88.125%;
+  background-color: white;
+  border-radius: 10px;
+  }
+
+@media screen and (min-width: 488px) {
+.popup__container_type_form {
+  max-width: 430px;
+  }
+}
