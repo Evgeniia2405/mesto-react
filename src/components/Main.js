@@ -3,9 +3,9 @@ import api from '../utils/Api';
 import Card from './Card';
 
 function Main(props) {
-  const [userName, setuserName] = useState([])
-  const [userDescription, setuserDescription] = useState([])
-  const [userAvatar, setuserAvatar] = useState([])
+  const [userName, setuserName] = useState('')
+  const [userDescription, setuserDescription] = useState('')
+  const [userAvatar, setuserAvatar] = useState('')
   const [cards, setCards] = useState([])
 
   useEffect( () => {

@@ -23,7 +23,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this.#url}/cards`, {
       headers: this.#header})
-      .then(this.#checkResponse, console.log(this.#header))
+      .then(this.#checkResponse)
   }
 
   editUserInfo(name, about) {
