@@ -31,8 +31,8 @@ function App() {
   function handleConfirmDeleteClick() {
     setIsConfirmDeletePopupOpen(true);
   }
-
-  const [currentUser, setCurrentUser] = useState({ });
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
   useEffect(() => {
     api
       .getUserInfo()
@@ -58,6 +58,7 @@ function App() {
   }
 
   function handleUpdateUser(data) {
+    setIsLoading(true);
     api
       .editUserInfo(data.name, data.about)
       .then((formData) => {
@@ -66,10 +67,14 @@ function App() {
       })
       .catch((err) => {
         console.log("Ошибка при редактировании профиля", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
   function handleUpdateAvatar(data) {
+    setIsLoading(true);
     api
       .editUserAvatar(data.avatar)
       .then((formData) => {
@@ -78,6 +83,9 @@ function App() {
       })
       .catch((err) => {
         console.log("Ошибка при редактировании аватара", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -100,43 +108,54 @@ function App() {
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     if (!isLiked) {
-      api.addLikeCard(card._id).then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        );
-      })
-      .catch((err) => {
-        console.log(`Ошибка при установке лайка: ${err}`);
-      });
+      api
+        .addLikeCard(card._id)
+        .then((newCard) => {
+          setCards((state) =>
+            state.map((c) => (c._id === card._id ? newCard : c))
+          );
+        })
+        .catch((err) => {
+          console.log(`Ошибка при установке лайка: ${err}`);
+        });
     } else {
-      api.removeLikeCard(card._id).then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        );
-      })
-      .catch((err) => {
-        console.log(`Ошибка при удалении лайка: ${err}`);
-      });
+      api
+        .removeLikeCard(card._id)
+        .then((newCard) => {
+          setCards((state) =>
+            state.map((c) => (c._id === card._id ? newCard : c))
+          );
+        })
+        .catch((err) => {
+          console.log(`Ошибка при удалении лайка: ${err}`);
+        });
     }
   }
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id).then(() => {
-      setCards((state) => state.filter((c) => c._id !== card._id));
-    })
-    .catch((err) => {
-      console.log(`Ошибка при удалении карточки: ${err}`);
-    });;
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        setCards((state) => state.filter((c) => c._id !== card._id));
+      })
+      .catch((err) => {
+        console.log(`Ошибка при удалении карточки: ${err}`);
+      });
   }
 
   function handleUpdatePlaces(data) {
-    api.createCard(data.name, data.link)
+    setIsLoading(true);
+    api
+      .createCard(data.name, data.link)
       .then((newCard) => {
-        setCards([newCard, ...cards])
-        closeAllPopups()
+        setCards([newCard, ...cards]);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log("Ошибка при добавлении новой карточки", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -158,16 +177,19 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
+          isLoading={isLoading}
         />
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
+          isLoading={isLoading}
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleUpdatePlaces}
+          isLoading={isLoading}
         />
         <PopupWithForm
           onClose={closeAllPopups}

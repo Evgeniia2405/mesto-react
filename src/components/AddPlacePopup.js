@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import PopupWithForm from "./PopupWithForm";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }) {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
 
@@ -27,7 +26,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       title="Новое место"
       name="add"
       isOpen={isOpen}
-      btnName="Создать"
+      btnName={isLoading ? "Сохранение..." : "Создать"}
       onSubmit={handleAddPlaceSubmit}
       children={
         <>
