@@ -7,6 +7,7 @@
   background-position: center;
   cursor: pointer;
   background-image: url(../../../images/like_white.svg);
+  /*background-image: url(../../../images/like_white.svg);
   /* background-size: 100%;
   display: block; */
 }
