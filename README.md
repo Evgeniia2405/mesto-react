@@ -30,7 +30,7 @@
 - Реализованы Лайки и удаление карточек
 - Созданы функциональные компоненты EditProfilePopup, EditAvatarPopup, AddPlacePopup
 
-# **Ссылка на сайт**
+**Ссылка на сайт**
 
 - [Ссылка](https://evgeniia2405.github.io/mesto-react/)
 
